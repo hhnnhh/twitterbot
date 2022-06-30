@@ -92,9 +92,7 @@ df3.rename(columns={"value": "Datum"},inplace=True)
 # %%
 # final df is merged by index
 final = pd.merge(df3, df2, left_index=True, right_index=True).drop(columns=["variable_x","variable_y"])
-# %%
-pd.set_option('display.max_colwidth', None)
-final.head(100)
+
 # %%
 
 # %%
@@ -103,4 +101,83 @@ final['Text_short'] = final['Text'].str[1:280]
 final.head()
 # %%
 final.to_csv('kafka_parsed.txt') 
+
+#####
+# weitermachen mit dem geparsten Text: Datum, Text, Text_short
+#%%
+final = pd.read_csv('kafka_parsed.txt')
+
+#%%
+final.drop(columns=final.columns[0], 
+        axis=1, 
+        inplace=True)
+
+#%%
+short = final.head(1)
 # %%
+#df = final['Text'].str.split('.',expand=True)
+#%%
+pd.set_option('display.max_colwidth', None)
+
+df
+
+#%%
+short
+#%%
+from nltk.tokenize import sent_tokenize
+#%%
+for txt in short['Text']:
+    token_text = sent_tokenize(txt,language='german')
+    print(token_text)
+    print(len(token_text))
+    while len(token_text) < 280:
+        token_text += token_text + token_text
+        print("ende",token_text)
+        #final['number'] = final.apply(lambda row: len(token_text), axis=1)
+        #final['shortened'] = final.apply(lambda row: token_text, axis=1)
+
+# %%
+pd.set_option('display.max_colwidth', None)
+final.head(1)
+#%%
+d = ".!?"
+for txt in final['Text']:
+    s =  [e+d for e in txt.split(d) if e]
+    while len(s) < 280:
+        print(s)
+        s += s + s
+final['new'].values = s
+
+#%%
+d = ".!?"
+for idx, row in final.iterrows():
+    for x in final['Text']:
+        [x[i] for i in range(len(x)) if [sum(list(map(len,x))[:j+1]) for j in range(len(x))][i] < 280]
+        print(x)
+#final.loc[idx,'new_text'] = s
+print(s)
+
+# %%
+final.Text.count('.')
+
+# %%
+left = final['Text'][0].partition(".")[0]
+# %%
+print(left)
+# %%
+# wenn der string kleiner als 280 ist, speichere ihn und nimm den nächsten dazu
+if len(left) <= 280:
+    print('klein')
+#wenn der string größer als 280 ist, speicher ihn nicht und nimm den nächsten, bis einer klein genug ist. 
+else:
+    print('groß')
+# %%
+# Iterate through the dataframes, first through the country dataframe and inside through the sentence one.
+for index, row in final.iterrows():
+    text = Text.row
+    print(text)
+
+#%%
+for txt in short['Text']:
+    x = sent_tokenize(txt,language='german')
+    [x[i] for i in range(len(x)) if [sum(list(map(len,x))[:j+1]) for j in range(len(x))][i] < 50]

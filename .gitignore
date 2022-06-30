@@ -1,3 +1,6 @@
+.gitignore
+.git
+/myvenv
 myvenv/bin/activate
 myvenv/bin/activate.csh
 myvenv/bin/activate.fish
