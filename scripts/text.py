@@ -7,6 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 import datefinder
 import pandas as pd
+from nltk.tokenize import sent_tokenize
 
 import tweepy
 
@@ -105,7 +106,7 @@ final.to_csv('kafka_parsed.txt')
 #####
 # weitermachen mit dem geparsten Text: Datum, Text, Text_short
 #%%
-final = pd.read_csv('kafka_parsed.txt')
+final = pd.read_csv('data/kafka_parsed.txt')
 
 #%%
 final.drop(columns=final.columns[0], 
@@ -123,8 +124,6 @@ df
 
 #%%
 short
-#%%
-from nltk.tokenize import sent_tokenize
 #%%
 for txt in short['Text']:
     token_text = sent_tokenize(txt,language='german')
@@ -157,27 +156,11 @@ for idx, row in final.iterrows():
 #final.loc[idx,'new_text'] = s
 print(s)
 
-# %%
-final.Text.count('.')
 
-# %%
-left = final['Text'][0].partition(".")[0]
-# %%
-print(left)
-# %%
-# wenn der string kleiner als 280 ist, speichere ihn und nimm den nächsten dazu
-if len(left) <= 280:
-    print('klein')
-#wenn der string größer als 280 ist, speicher ihn nicht und nimm den nächsten, bis einer klein genug ist. 
-else:
-    print('groß')
 # %%
 # Iterate through the dataframes, first through the country dataframe and inside through the sentence one.
 for index, row in final.iterrows():
     text = Text.row
     print(text)
 
-#%%
-for txt in short['Text']:
-    x = sent_tokenize(txt,language='german')
-    [x[i] for i in range(len(x)) if [sum(list(map(len,x))[:j+1]) for j in range(len(x))][i] < 50]
+
