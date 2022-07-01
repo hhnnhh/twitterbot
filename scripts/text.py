@@ -1,6 +1,6 @@
 
 
-# Text for Diary 
+# Scrape Text for Diary 
 
 #%%
 import requests
@@ -28,14 +28,13 @@ for url in urls:
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")#.decode('utf-8')
 
-    #print(soup)
+    print(soup)
 
     data.append({
         #'title': soup.title,
         #'chapter': soup.h2.get_text(),
-        #'text': ' '.join([p.get_text(strip=True) for p in soup.select('body p')[2:]])
+        #'text': ' '.join([p.get_text(strip=True) for p in soup.select('body p')[2:]]),
         ' '.join([p.get_text(strip=True) for p in soup.select('body p')[2:]])
-
         }
     )
 
@@ -52,15 +51,6 @@ df.to_csv('kafka.txt')
 mystr = ''.join(map(str, data)).replace('{','').replace('}','')
 #%%
 print(mystr)
-
-## %%
-# datefinder works to find dates, but I dont need a list, I need it in a new column
-#matches = datefinder.find_dates(mystr)
-#
-#for match in matches:
-#   print(match)
-#
-#
 
 
 # %%
@@ -97,7 +87,7 @@ final = pd.merge(df3, df2, left_index=True, right_index=True).drop(columns=["var
 # %%
 
 # %%
-final['Text_short'] = final['Text'].str[1:280]
+final['Text_short'] = final['Text'].str[1:280] # probeweise Textkürzung, um zu sehen, wie in etwa die Länge sein sollte
 
 final.head()
 # %%

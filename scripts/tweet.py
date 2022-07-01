@@ -1,43 +1,53 @@
 #%%
 import tweepy
-# %%
-#API Key/Consumer Key HzTuGauYtjR72ZFWdXBD3CaIk
-
-#API Key Secret rL0nKJPIZ1z7P8jG09Ywe1LO56fU76xfKl4e1XpEqlUxP3czLf
-
-#Bearer Token AAAAAAAAAAAAAAAAAAAAANyFcwEAAAAApSs8L32ixPdM1vWzlSt4nqxSWH8%3DMCupcxBhf04ePLh25CZm3txzguaxNrbDJnbG9cMIDVN0p6xaoO
-
-#Client ID
-
-#ZzltNWtRcjYtRXEwazVvZ2tTS3k6MTpjaQ
-
-#Client Secret
-
-#4AiLjIXsygBEdxsQUsjd3t2uG6pwCR_NGdoQnJ6-puPozMmXHp
-# Authenticate to Twitter
-auth = tweepy.OAuthHandler("HzTuGauYtjR72ZFWdXBD3CaIk", "rL0nKJPIZ1z7P8jG09Ywe1LO56fU76xfKl4e1XpEqlUxP3czLf")
-auth.set_access_token("ZzltNWtRcjYtRXEwazVvZ2tTS3k6MTpjaQ", "4AiLjIXsygBEdxsQUsjd3t2uG6pwCR_NGdoQnJ6-puPozMmXHp")
-
-# Create API object
-api = tweepy.API(auth)
-
-# Create a tweet
-api.update_status("Hello Tweepy")
-# %%
-import tweepy
+import pandas as pd
+from datetime import date
 import json
-from random import randint
 
-auth = tweepy.OAuthHandler("HzTuGauYtjR72ZFWdXBD3CaIk", "rL0nKJPIZ1z7P8jG09Ywe1LO56fU76xfKl4e1XpEqlUxP3czLf")
-auth.set_access_token("ZzltNWtRcjYtRXEwazVvZ2tTS3k6MTpjaQ", "4AiLjIXsygBEdxsQUsjd3t2uG6pwCR_NGdoQnJ6-puPozMmXHp")
-#auth = tweepy.OAuthHandler(<your tweepy_api_key>, <your tweepy_api_secret_key>)
-#auth.set_access_token(<your tweepy_access_token>, <your tweepy_token_secret>)
+
+#%%
+today = date.today().strftime('%m-%d')
+heute = str(today)
+print("Today's date:", heute)
+
+
+#%%
+entry = pd.read_json('/Users/hannahbohle/Documents/twitterbot/data/tweetlength_short.json')
+
+#%%
+# check if date is todays date, if so, then prepare todays tweet
+finaltweet = entry.loc[entry['date'] == '07-09', 'finaltweet'].iloc[0]
+
+#%%
+print(finaltweet)
+
+# %%
+# Access
+# https://developer.twitter.com/en/portal/projects/1528471243594338305/apps/24348124/keys
+# https://docs.tweepy.org/en/stable/examples.html
+
+
+#API Key/Consumer Key 
+consumer_key = "VoZsLqjjq5UOckBU9duYji9H3"
+
+#API Key Secret 
+consumer_secret = "1W03zh1ckf2vBddVTyXxPm30nb6ceUl5o4t67XWutKGwCXRjKF"
+
+#Bearer Token 
+bearer_token = "AAAAAAAAAAAAAAAAAAAAANyFcwEAAAAAvfpFYp%2BXqSIRbbv2L4Us7Ka4NXI%3DsgLvBaiICPOhc0Qz7PpQhSkoLHKM6qkDLD56lqhSUNYCj0T1dI"
+
+#Client ID ZzltNWtRcjYtRXEwazVvZ2tTS3k6MTpjaQ
+
+# Access Token Secret 
+access_token_secret = "eSPYT2Ms2JlnRLJeK5H6XAvAlx4nAQgq51qEwfWwVF2j9"
+
+# Access Token 
+access_token = "1528440001251446786-zIkYzkVW03G2VFM98ie1YdPpvWygMb"
+
+auth = tweepy.OAuth1UserHandler(
+    consumer_key, consumer_secret, access_token, access_token_secret
+)
 api = tweepy.API(auth)
 
-with open("kafka.json", "r") as f:
-    c = json.load(f)
-for k in c:
-    if str(k) == str(randint(1,5)):
-        tweet = c[k]
-api.update_status(tweet)
-# %%
+#api.update_status("1. Juli. Der Wunsch nach besinnungsloser Einsamkeit. Nur mir gegenübergestellt sein. Vielleicht werde ich es in Riva haben. Vorvorgestern mit Weiß, Verfasser der 'Galeere'. Jüdischer Arzt, Jude von der Art, (...) dem man sich (...) gleich nahe fühlt.")
+api.update_status(finaltweet)
