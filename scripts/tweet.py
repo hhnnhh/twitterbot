@@ -16,7 +16,7 @@ entry = pd.read_json('/Users/hannahbohle/Documents/twitterbot/data/tweetlength_s
 
 #%%
 # check if date is todays date, if so, then prepare todays tweet
-finaltweet = entry.loc[entry['date'] == '07-09', 'finaltweet'].iloc[0]
+finaltweet = entry.loc[entry['date'] == today, 'finaltweet'].iloc[0]
 
 #%%
 print(finaltweet)
