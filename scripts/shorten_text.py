@@ -60,7 +60,9 @@ final.drop(columns=final.columns[0],
         inplace=True)
 
 #%%
-final.drop(columns=['year'],axis=1, inplace=True) # keep Datum for comparison
+# keep year for year restriction
+
+#final.drop(columns=['year'],axis=1, inplace=True) # keep Datum for comparison
 
 #%%
 #short = final.reset_index().head(10)
@@ -112,12 +114,18 @@ import dateparser
 #string = '1. Juli 2010'
 #dateFormatter = '%d. %B %Y'
 new_date=[]
+new_year=[]
 for date in final['Datum']:
     print(date)
-    converted = dateparser.parse(str(date)).strftime('%m-%d')
+    converted = dateparser.parse(str(date)).strftime('%m-%d') # das macht das tweet-datum
+    year = dateparser.parse(str(date)).strftime('%Y') # hier Jahr speichern, damit ich nach und nach durch die Jahre loopen kann
+
     new_date.append(converted)
+    new_year.append(year)
     
 final["date"] = new_date
+final["year"] = new_year
+
 
 #%%
 final.drop(columns=["Datum","tweet","dairy_date"],inplace=True,axis=1)
@@ -128,6 +136,6 @@ final.head()
 #%%
 final.info()
 # %%
-final.to_json('/Users/hannahbohle/Documents/twitterbot/data/tweetlength_short.json') 
+final.to_json('/Users/hannahbohle/Documents/twitterbot/data/tweetlength_short_year.json') 
 
 # %%

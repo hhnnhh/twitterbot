@@ -16,9 +16,12 @@ entry = pd.read_json('/Users/hannahbohle/Documents/twitterbot/data/tweetlength_s
 
 #%%
 # check if date is todays date, if so, then prepare todays tweet
-finaltweet = entry.loc[entry['date'] == today, 'finaltweet'].iloc[0]
+# hier noch einbauen: 
+# nur im Jahr 2010 suchen und wenn das Datum matcht, dann tweeten
+# sonst, tue nichts
+finaltweet = entry.loc[entry['date'] == '07-10', 'finaltweet'].iloc[0]
 
-#%%
+
 print(finaltweet)
 
 # %%
@@ -51,3 +54,4 @@ api = tweepy.API(auth)
 
 #api.update_status("1. Juli. Der Wunsch nach besinnungsloser Einsamkeit. Nur mir gegenübergestellt sein. Vielleicht werde ich es in Riva haben. Vorvorgestern mit Weiß, Verfasser der 'Galeere'. Jüdischer Arzt, Jude von der Art, (...) dem man sich (...) gleich nahe fühlt.")
 api.update_status(finaltweet)
+# %%

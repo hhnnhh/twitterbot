@@ -115,6 +115,7 @@ df
 #%%
 short
 #%%
+#
 for txt in short['Text']:
     token_text = sent_tokenize(txt,language='german')
     print(token_text)
