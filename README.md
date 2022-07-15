@@ -1,4 +1,4 @@
-[![twitterbot](https://github.com/hhnnhh/twitterbot/actions/workflows/python-app.yml/badge.svg)](https://github.com/hhnnhh/twitterbot/actions/workflows/python-app.yml)
+[![twitterbot](https://github.com/hhnnhh/twitterbot/actions/workflows/main.yml/badge.svg)](https://github.com/hhnnhh/twitterbot/actions/workflows/main.yml)
 
 
 # Kafka twitterbot
