@@ -10,10 +10,6 @@ consumer_secret = os.environ['consumer_secret']
 access_token_secret = os.environ['access_token_secret']
 access_token = os.environ['access_token']
 
-print('consumer key:', consumer_key)
-print('consumer secret:', consumer_secret)
-print('access_token_secret:', access_token_secret)
-print('access_token:', access_token)
 
 
 #%%
@@ -30,7 +26,7 @@ entry = pd.read_json('data/tweetlength_short.json')
 # hier noch einbauen: 
 # nur im Jahr 2010 suchen und wenn das Datum matcht, dann tweeten
 # sonst, tue nichts
-finaltweet = entry.loc[entry['date'] == '07-13', 'finaltweet'].iloc[0]
+finaltweet = entry.loc[entry['date'] == '07-14', 'finaltweet'].iloc[0]
 #finaltweet = entry.loc[entry['date'] == today, 'finaltweet'].iloc[0]
 
 
