@@ -4,13 +4,17 @@
 name: Python application
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+  schedule:
+    - cron: '0 16 * * *' # runs at 12:00 UTC everyday
 
-permissions:
-  contents: read
+#on:
+#  push:
+#    branches: [ "master" ]
+#  pull_request:
+#    branches: [ "master" ]
+
+#permissions:
+#  contents: read
 
 jobs:
   build:
