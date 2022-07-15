@@ -4,6 +4,10 @@ import pandas as pd
 from datetime import date
 import json
 
+consumer_key = os.environ['consumer_key']
+consumer_secret = os.environ['consumer_secret']
+access_token_secret = os.environ['access_token_secret']
+access_token = os.environ['access_token']
 
 #%%
 today = date.today().strftime('%m-%d')
@@ -30,23 +34,7 @@ print(finaltweet)
 # https://developer.twitter.com/en/portal/projects/1528471243594338305/apps/24348124/keys
 # https://docs.tweepy.org/en/stable/examples.html
 
-
-#API Key/Consumer Key 
-consumer_key = "VoZsLqjjq5UOckBU9duYji9H3"
-
-#API Key Secret 
-consumer_secret = "1W03zh1ckf2vBddVTyXxPm30nb6ceUl5o4t67XWutKGwCXRjKF"
-
-#Bearer Token 
-bearer_token = "AAAAAAAAAAAAAAAAAAAAANyFcwEAAAAAvfpFYp%2BXqSIRbbv2L4Us7Ka4NXI%3DsgLvBaiICPOhc0Qz7PpQhSkoLHKM6qkDLD56lqhSUNYCj0T1dI"
-
-#Client ID ZzltNWtRcjYtRXEwazVvZ2tTS3k6MTpjaQ
-
-# Access Token Secret 
-access_token_secret = "eSPYT2Ms2JlnRLJeK5H6XAvAlx4nAQgq51qEwfWwVF2j9"
-
-# Access Token 
-access_token = "1528440001251446786-zIkYzkVW03G2VFM98ie1YdPpvWygMb"
+# auth tokens have been stored as github secrets
 
 auth = tweepy.OAuth1UserHandler(
     consumer_key, consumer_secret, access_token, access_token_secret
