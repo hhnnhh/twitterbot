@@ -5,7 +5,7 @@ name: Python application
 
 on:
   schedule:
-    - cron: '0 16 * * *' # runs at 12:00 UTC everyday
+    - cron: '0 14 * * *' # runs at 12:00 UTC everyday
 
 #on:
 #  push:
@@ -41,3 +41,5 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+    - name: execute py script
+      run: python tweet.py
