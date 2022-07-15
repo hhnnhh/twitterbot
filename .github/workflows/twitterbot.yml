@@ -35,9 +35,9 @@ jobs:
           
       - name: execute py script
         env:
-          consumer_key: ${{ secrets.consumer_key }}
-          consumer_secret: ${{ secrets.consumer_secret }}
-          access_token_secret: ${{ secrets.access_token_secret }}
-          access_token: ${{ secrets.access_token }}
+          consumer_key: ${{ secrets.API_KEY }}
+          consumer_secret: ${{ secrets.API_KEY_SECRET }}
+          access_token_secret: ${{ secrets.ACCESS_TOKEN_SECRET }}
+          access_token: ${{ secrets.ACCESS_TOKEN }}
         run: | 
           python scripts/tweet.py
