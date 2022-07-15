@@ -24,7 +24,7 @@ entry = pd.read_json('/Users/hannahbohle/Documents/twitterbot/data/tweetlength_s
 # hier noch einbauen: 
 # nur im Jahr 2010 suchen und wenn das Datum matcht, dann tweeten
 # sonst, tue nichts
-finaltweet = entry.loc[entry['date'] == '07-14', 'finaltweet'].iloc[0]
+finaltweet = entry.loc[entry['date'] == '07-13', 'finaltweet'].iloc[0]
 #finaltweet = entry.loc[entry['date'] == today, 'finaltweet'].iloc[0]
 
 
