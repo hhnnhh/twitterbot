@@ -48,4 +48,4 @@ jobs:
           access_token_secret: ${{ secrets.access_token_secret }}
           access_token: ${{ secrets.access_token }}
         run: | 
-          python twitterbot/scripts/tweet.py
+          python scripts/tweet.py
