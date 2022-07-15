@@ -3,6 +3,7 @@ import tweepy
 import pandas as pd
 from datetime import date
 import json
+import os
 
 consumer_key = os.environ['consumer_key']
 consumer_secret = os.environ['consumer_secret']
