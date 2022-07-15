@@ -6,7 +6,7 @@ name: twitterbot
 
 on:
   schedule:
-    - cron: '0 14 * * *' # runs at 12:00 UTC everyday
+    - cron: '0 15 * * *' # runs at 12:00 UTC everyday
 
 jobs:
   build:
