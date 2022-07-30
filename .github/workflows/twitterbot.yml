@@ -1,0 +1,43 @@
+# This is a basic workflow to help you get started with Actions
+
+name: twitterbot
+
+# Controls when the workflow will run
+on:
+  schedule:
+    - cron: '0 14 * * *' # runs at 12:00 UTC everyday
+    #- cron: '*/10 * * * *' # run every 10 minutes
+
+# Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+
+      - name: Set up Python 🐍
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+            
+      - name: Install packages ⚙
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: execute py script
+        env:
+          consumer_key: ${{ secrets.API_KEY }}
+          consumer_secret: ${{ secrets.API_KEY_SECRET }}
+          access_token_secret: ${{ secrets.ACCESS_TOKEN_SECRET }}
+          access_token: ${{ secrets.ACCESS_TOKEN }}
+        run: | 
+          python scripts/tweet.py
