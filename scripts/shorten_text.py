@@ -33,7 +33,7 @@ def join_tweet_or_less(lst, limit=268):
 final = pd.read_csv('/Users/hannahbohle/Documents/twitterbot/data/kafka_parsed.txt')
 
 #%%
-#reihe 282 muss ich löschen, 16. Februar 2014 ist falsch
+#reihe 282 muss ich löschen, 16. Februar 1914 ist falsch
 conds = [(final.index >= 0) & (final.index <= 21),#10
          (final.index > 22) & (final.index<=108),#11
          (final.index > 109) & (final.index<=186),#12
@@ -58,6 +58,11 @@ final['dairy_date'] = final["Datum"]+" "+final['year']
 final.drop(columns=final.columns[0], 
         axis=1, 
         inplace=True)
+
+
+#%%
+final.to_csv('/Users/hannahbohle/Documents/twitterbot/data/kafka_texte.txt')
+
 
 #%%
 # keep year for year restriction
