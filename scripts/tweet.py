@@ -4,7 +4,7 @@ import pandas as pd
 from datetime import date
 import json
 import os
-
+#%%
 consumer_key = os.environ['consumer_key']
 consumer_secret = os.environ['consumer_secret']
 access_token_secret = os.environ['access_token_secret']
@@ -19,8 +19,8 @@ print("Today's date:", heute)
 
 
 #%%
-entry = pd.read_json('/Users/hannahbohle/Documents/twitterbot/data/tweetlength_short.json')
-#entry = pd.read_json('data/tweetlength_short.json')
+#entry = pd.read_json('/Users/hannahbohle/Documents/twitterbot/data/tweetlength_short.json')
+entry = pd.read_json('data/tweetlength_short.json')
 
 #%%
 # check if date is todays date, if so, then prepare todays tweet
