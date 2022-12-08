@@ -1,7 +1,6 @@
 .gitignore
 .git
 /myvenv
-/scripts/tweet.py
 myvenv/bin/activate.csh
 myvenv/bin/activate.fish
 myvenv/bin/Activate.ps1
